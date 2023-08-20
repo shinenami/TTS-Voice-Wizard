@@ -12,6 +12,7 @@ using OSCVRCWiz.Resources;
 using static System.Net.Mime.MediaTypeNames;
 using OSCVRCWiz.Services.Text;
 using OSCVRCWiz.RJControls;
+using Newtonsoft.Json.Linq;
 
 namespace OSCVRCWiz.Services.Integrations.Media
 {
@@ -190,6 +191,7 @@ namespace OSCVRCWiz.Services.Integrations.Media
                         theString = theString.Replace("{counter4}", VRChatListener.counter4.ToString());
                         theString = theString.Replace("{counter5}", VRChatListener.counter5.ToString());
                         theString = theString.Replace("{counter6}", VRChatListener.counter6.ToString());
+                       
 
                         if (fullSongPauseCheck != progress && VoiceWizardWindow.MainFormGlobal.rjToggleButtonPlayPaused.Checked == true || VoiceWizardWindow.MainFormGlobal.rjToggleButtonPlayPaused.Checked == false)//stop outputting periodically if song paused
                         {
@@ -210,6 +212,7 @@ namespace OSCVRCWiz.Services.Integrations.Media
                             }
                             if (VoiceWizardWindow.MainFormGlobal.rjToggleButtonChatBox.Checked == true && VoiceWizardWindow.MainFormGlobal.rjToggleButtonSpotifyChatboxDisable.Checked == false)
                             {
+                              //  theString = LineBreakerChatbox(theString, 28);//must always be the last
                                 Task.Run(() => OutputText.outputVRChatSpeechBubbles(theString, "spotify")); //original
 
                             }
@@ -433,6 +436,7 @@ namespace OSCVRCWiz.Services.Integrations.Media
             }
             if (VoiceWizardWindow.MainFormGlobal.rjToggleButtonChatBox.Checked == true && VoiceWizardWindow.MainFormGlobal.rjToggleButtonSpotifyChatboxDisable.Checked == false)
             {
+              //  text = LineBreakerChatbox(text, 28);//must always be the last
                 Task.Run(() => OutputText.outputVRChatSpeechBubbles(text, "media")); //original
 
             }
@@ -639,6 +643,8 @@ namespace OSCVRCWiz.Services.Integrations.Media
                 spotifyTimer.Change(Int32.Parse(SpotifyAddon.spotifyInterval), 0);
             }
         }
+      
+
 
 
 

@@ -225,8 +225,15 @@ namespace OSCVRCWiz.Services.Speech.TextToSpeech.TTSEngines
                    }*/
                 foreach (var locale in localList)
                 {
+                    string basePath = AppDomain.CurrentDomain.BaseDirectory;
+
+                    string relativePath = "Assets/voices/azureVoices.json";
+
+                    string fullPath = Path.Combine(basePath, relativePath);
+
+
                     // replace with the path to the JSON file
-                    string jsonFilePath = "Assets/voices/azureVoices.json";
+                    string jsonFilePath = fullPath;
 
                     // read the JSON data from the file
                     string jsonData = "";

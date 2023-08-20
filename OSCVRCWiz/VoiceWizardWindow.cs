@@ -2817,7 +2817,12 @@ namespace OSCVRCWiz
         private void button49_Click(object sender, EventArgs e)
         {
             string path = VoiceWizardWindow.MainFormGlobal.textBoxReadFromTXTFile.Text.ToString();
-            TextFileReader.FileToTTS(path);
+
+            string basePath = AppDomain.CurrentDomain.BaseDirectory;
+            string relativePath = path;
+            string absPath = Path.Combine(basePath, relativePath);
+
+            TextFileReader.FileToTTS(absPath);
         }
 
         private void rjToggleButton14_CheckedChanged(object sender, EventArgs e)

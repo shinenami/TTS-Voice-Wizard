@@ -47,10 +47,7 @@ namespace OSCVRCWiz.Services.Text
 
                 foreach (var word in words)
                 {
-                    //if (word.Length > maximumLineLength)
-                    //{
-                    //    perfectString += word.ToString();
-                    //  }
+
                     if (line.Length + word.Length >= maximumLineLength)
                     {
                         System.Diagnostics.Debug.WriteLine(line.ToString());
@@ -86,9 +83,15 @@ namespace OSCVRCWiz.Services.Text
         {
             try
             {
+                string basePath = AppDomain.CurrentDomain.BaseDirectory;
+
+                string relativePath = filepath;
+
+                string fullPath = Path.Combine(basePath, relativePath);
+
                 if (VoiceWizardWindow.MainFormGlobal.rjToggleButtonOBSText.Checked == true)
                 {
-                    await File.WriteAllTextAsync(filepath, textstring);
+                    await File.WriteAllTextAsync(fullPath, textstring);
 
                     if (VoiceWizardWindow.MainFormGlobal.rjToggleButtonHideDelay2.Checked) //hide
                     {
@@ -107,7 +110,6 @@ namespace OSCVRCWiz.Services.Text
         {
             try
             {
-
 
 
                 // byte[] bytes = Encoding.Default.GetBytes(textstring);

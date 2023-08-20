@@ -64,9 +64,16 @@ namespace OSCVRCWiz.Resources.StartUp
         }
         public static void UpdateButtonClicked()
         {
+            string basePath = AppDomain.CurrentDomain.BaseDirectory;
+
+            string relativePath = @"updates";
+
+            string fullPath = Path.Combine(basePath, relativePath);
+
+
             AutoUpdater.Start(updateXMLName);
             AutoUpdater.InstalledVersion = new Version(currentVersion);
-            AutoUpdater.DownloadPath = @"updates";
+            AutoUpdater.DownloadPath = fullPath;
             AutoUpdater.ShowSkipButton = false;
             AutoUpdater.ShowRemindLaterButton = false;
         }
